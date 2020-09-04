@@ -18,7 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <body class="hold-transition sidebar-mini">
 <div id="app" class="wrapper">
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav  v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget' ? false : true "  class="main-header navbar navbar-expand navbar-white navbar-light">
 
         <!-- Right navbar links -->
         <ul class="navbar-nav ml-auto">
@@ -41,9 +41,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <aside  v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget' ? false : true " class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="index3.html" class="brand-link">
+        <a href="" class="brand-link">
             <img src="#" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -79,7 +79,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <!-- /.sidebar -->
     </aside>
-    <div class="content-wrapper">
+    <div  class="content-wrapper">
         <div class="content">
             <div class="container-fluid">
                 <router-view></router-view>

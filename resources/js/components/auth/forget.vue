@@ -5,14 +5,9 @@
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Forget Password</p>
 
-                    <form action="" method="post">
+                    <form >
                         <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Email">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
-                                </div>
-                            </div>
+                            <input v-model="form.email" type="email" class="form-control" placeholder="Email">
                         </div>
 
                         <!-- /.col -->
@@ -33,9 +28,25 @@
 
     </div>
 </template>
-<script>
+<script type="text/javascript">
+    export default {
+        data(){
+            return{
+                form:{
+                    email: null
+                },
+                errors:{}
+            }
+        },
+        created(){
+            if(User.loggedIn()){
+                this.$router.push({name : 'home'})
+            }
+        },
 
+    }
 </script>
+
 <style>
 
 </style>
