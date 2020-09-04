@@ -5,24 +5,16 @@
                 <div class="card-body login-card-body">
                     <p class="login-box-msg">Sign in to start your session</p>
 
-                    <form action="" method="post">
-                        <div class="input-group mb-3">
-                            <input type="email" class="form-control" placeholder="Email">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-envelope"></span>
-                                </div>
-                            </div>
+                    <form @submit.prevent="login">
+                        <div class="input-group">
+                            <input  v-model="form.email"  type="email" class="form-control" placeholder="Email">
                         </div>
-                        <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="Password">
-                            <div class="input-group-append">
-                                <div class="input-group-text">
-                                    <span class="fas fa-lock"></span>
-                                </div>
-                            </div>
+                        <small v-if="errors.email" class="text-danger">{{errors.email[0]}}</small>
+                        <div class="input-group mt-3">
+                            <input  v-model="form.password"  type="password" class="form-control" placeholder="Password">
                         </div>
-                        <div class="row">
+                        <small v-if="errors.password" class="text-danger">{{errors.password[0]}}</small>
+                        <div class="row mt-3">
                             <div class="col-8">
                                 <div class="icheck-primary">
                                     <input type="checkbox" id="remember">
@@ -55,8 +47,44 @@
 
     </div>
 </template>
-<script>
+<script type="text/javascript">
+    export default {
+        data(){
+            return{
+                form:{
+                    email: null,
+                    password: null
+                },
+                errors:{}
+            }
 
+        },
+        created(){
+            if(User.loggedIn()){
+                this.$router.push({name : 'home'})
+            }
+        },
+        methods:{
+            login(){
+                axios.post('/api/auth/login',this.form)
+                    .then(res => {
+                        User.responseAfterLogin(res);
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Signed in successfully'
+                        });
+                        this.$router.push({name : 'home'});
+                    })
+                    .catch(error => this.errors = error.response.data.errors)
+                    .catch(
+                        Toast.fire({
+                            icon: 'error',
+                            title: 'Invalid Email Or Password '
+                        })
+                    )
+            }
+        }
+    }
 </script>
 <style>
 
