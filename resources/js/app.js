@@ -6,6 +6,10 @@ Vue.use(VueRouter);
 import User from './Helpers/User'
 window.User = User;
 
+//import Notification
+import Notification from './Helpers/Notification'
+window.Notification = Notification;
+
 //sweet alert
 import Swal from 'sweetalert2';
 window.Swal = Swal;

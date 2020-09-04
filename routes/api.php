@@ -2,8 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
-
 Route::group([
 
     'middleware' => 'api',
@@ -18,3 +16,4 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
+Route::apiResource('/employee','Api\EmployeeController');

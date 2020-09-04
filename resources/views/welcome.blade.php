@@ -10,7 +10,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>Inventory</title>
-
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
@@ -44,9 +43,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <aside  v-show="$route.path === '/' || $route.path === '/register' || $route.path === '/forget' ? false : true " class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="" class="brand-link">
-            <img src="#" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            <img src="#" alt="Logo" class="brand-image img-circle elevation-3"
                  style="opacity: .8">
-            <span class="brand-text font-weight-light">AdminLTE 3</span>
+            <span class="brand-text font-weight-light">AdminLTE</span>
         </a>
 
         <!-- Sidebar -->
@@ -57,7 +56,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <img src="#" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">RS</a>
                 </div>
             </div>
 
@@ -68,11 +67,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
                          with font-awesome or any other icon font library -->
 
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <router-link to="/home" class="nav-link">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>Simple Link</p>
-                        </a>
+                            <p>Dashboard</p>
+                        </router-link>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link"><p>Employee</p></a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <router-link to="/store-employee" class="nav-link"><p>Add Employee</p></router-link>
+                                <router-link to="/employee" class="nav-link"><p>All Employee</p></router-link>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
@@ -81,7 +90,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </aside>
     <div  class="content-wrapper">
         <div class="content">
-            <div class="container-fluid">
+            <div class="container-fluid mt-3" >
                 <router-view></router-view>
             </div>
         </div>
