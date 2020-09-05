@@ -1,5 +1,7 @@
 require('./bootstrap');
+//vue
 import Vue from 'vue';
+//vue router
 import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 //import user class
