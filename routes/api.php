@@ -16,4 +16,9 @@ Route::group([
     Route::post('me', 'AuthController@me');
 
 });
-Route::apiResource('/employee','Api\EmployeeController');
+Route::group(['namespace' => 'Api'], function(){
+    Route::apiResource('/employee','EmployeeController');
+    Route::apiResource('/supplier','SupplierController');
+    Route::apiResource('/category','CategoryController');
+});
+

@@ -10,7 +10,15 @@ let addEmployee = require('./components/employee/create').default;
 let Employee = require('./components/employee/index').default;
 let editEmployee = require('./components/employee/edit').default;
 let showEmployee = require('./components/employee/show').default;
-
+//supplier
+let addSupplier = require('./components/supplier/create').default;
+let Supplier = require('./components/supplier/index').default;
+let editSupplier = require('./components/supplier/edit').default;
+let showSupplier = require('./components/supplier/show').default;
+//category
+let addCategory = require('./components/category/create').default;
+let Category = require('./components/category/index').default;
+let editCategory = require('./components/category/edit').default;
 
 export const routes = [
     //authentication
@@ -24,5 +32,16 @@ export const routes = [
     { path: '/store-employee', component: addEmployee, name: 'store-employee' },
     { path: '/employee', component:Employee, name: 'employee' },
     { path: '/edit-employee/:id', component:editEmployee, name: 'edit-employee' },
-    { path: '/show-employee/:id', component:showEmployee, name: 'show-employee' }
+    { path: '/show-employee/:id', component:showEmployee, name: 'show-employee' },
+
+    //supplier routes
+    { path: '/store-supplier', component: addSupplier, name: 'store-supplier' },
+    { path: '/supplier', component:Supplier, name: 'supplier' },
+    { path: '/edit-supplier/:id', component:editSupplier, name: 'edit-supplier' },
+    { path: '/show-supplier/:id', component:showSupplier, name: 'show-supplier' },
+    //category routes
+    { path: '/store-category', component: addCategory, name: 'store-category' },
+    { path: '/category', component:Category, name: 'category' },
+    { path: '/edit-category/:id', component:editCategory, name: 'edit-category' }
+
 ]

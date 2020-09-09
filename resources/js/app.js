@@ -1,9 +1,7 @@
 require('./bootstrap');
 //vue
 import Vue from 'vue';
-//vue router
-import VueRouter from 'vue-router';
-Vue.use(VueRouter);
+
 //import user class
 import User from './Helpers/User'
 window.User = User;
@@ -27,6 +25,9 @@ const Toast = Swal.mixin({
     }
 });
 window.Toast = Toast;
+//vue router
+import VueRouter from 'vue-router';
+Vue.use(VueRouter);
 //router import
 import {routes} from './routes';
 const router = new VueRouter({

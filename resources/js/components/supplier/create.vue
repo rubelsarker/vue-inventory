@@ -1,10 +1,10 @@
 <template>
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Add New Employee</h3>
-            <router-link to="/employee" class="btn btn-success float-right">All Employee</router-link>
+            <h3 class="card-title">Add New Supplier</h3>
+            <router-link to="/supplier" class="btn btn-success float-right">All Supplier</router-link>
         </div>
-        <form @submit.prevent="employeeInsert" enctype="multipart/form-data" >
+        <form @submit.prevent="supplierInsert" enctype="multipart/form-data" >
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
@@ -30,16 +30,16 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="salary">Salary</label>
-                            <input v-model="form.salary" type="text" class="form-control" id="salary" placeholder="Salary">
-                            <small v-if="errors.salary" class="text-danger">{{errors.salary[0]}}</small>
+                            <label for="phone">Phone</label>
+                            <input v-model="form.phone" type="text" class="form-control" id="phone" placeholder="Phone">
+                            <small v-if="errors.phone" class="text-danger">{{errors.phone[0]}}</small>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="joining_date">Joining Date</label>
-                            <input v-model="form.joining_date" type="date" class="form-control" id="joining_date" placeholder="Joining Date">
-                            <small v-if="errors.joining_date" class="text-danger">{{errors.joining_date[0]}}</small>
+                            <label for="shop_name">Shop Name</label>
+                            <input v-model="form.shop_name" type="text" class="form-control" id="shop_name" placeholder="Shop Name">
+                            <small v-if="errors.shop_name" class="text-danger">{{errors.shop_name[0]}}</small>
                         </div>
                     </div>
                     <div class="col-6">
@@ -97,18 +97,18 @@
                     email: '',
                     photo: '',
                     nid_number: '',
-                    joining_date: '',
-                    salary: '',
+                    shop_name: '',
+                    phone: '',
                     address: ''
                 },
                 errors:{}
             }
         },
         methods:{
-            employeeInsert(){
-                axios.post('/api/employee/',this.form)
+            supplierInsert(){
+                axios.post('/api/supplier/',this.form)
                     .then(() => {
-                        this.$router.push({name: 'employee'});
+                        this.$router.push({name: 'supplier'});
                         Notification.success();
                     })
                     .catch((error) =>{

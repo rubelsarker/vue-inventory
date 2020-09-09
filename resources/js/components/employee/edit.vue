@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="email">Name</label>
+                            <label for="email">Email</label>
                             <input v-model="form.email" type="email" class="form-control" id="email" placeholder="Email">
                             <small v-if="errors.email" class="text-danger">{{errors.email[0]}}</small>
                         </div>

@@ -1,10 +1,10 @@
 <template>
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">Add New Employee</h3>
-            <router-link to="/employee" class="btn btn-success float-right">All Employee</router-link>
+            <h3 class="card-title">Update Supplier</h3>
+            <router-link to="/supplier" class="btn btn-success float-right">All Supplier</router-link>
         </div>
-        <form @submit.prevent="employeeInsert" enctype="multipart/form-data" >
+        <form @submit.prevent="supplierUpdate" enctype="multipart/form-data" >
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
@@ -30,16 +30,16 @@
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="salary">Salary</label>
-                            <input v-model="form.salary" type="text" class="form-control" id="salary" placeholder="Salary">
-                            <small v-if="errors.salary" class="text-danger">{{errors.salary[0]}}</small>
+                            <label for="phone">Phone</label>
+                            <input v-model="form.phone" type="text" class="form-control" id="phone" placeholder="Phone">
+                            <small v-if="errors.phone" class="text-danger">{{errors.phone[0]}}</small>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="joining_date">Joining Date</label>
-                            <input v-model="form.joining_date" type="date" class="form-control" id="joining_date" placeholder="Joining Date">
-                            <small v-if="errors.joining_date" class="text-danger">{{errors.joining_date[0]}}</small>
+                            <label for="shop_name">Shop Name</label>
+                            <input v-model="form.shop_name" type="text" class="form-control" id="shop_name" placeholder="Shop Name">
+                            <small v-if="errors.shop_name" class="text-danger">{{errors.shop_name[0]}}</small>
                         </div>
                     </div>
                     <div class="col-6">
@@ -56,9 +56,9 @@
                             <label for="exampleInputFile">Photo</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="exampleInputFile" @change="onFileSelected">
+                                    <input  type="file" class="custom-file-input" id="exampleInputFile" @change="onFileSelected">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    <small v-if="errors.photo" class="text-danger">{{errors.photo[0]}}</small>
+                                    <small v-if="errors.new_photo" class="text-danger">{{errors.new_photo[0]}}</small>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="">Upload</span>
@@ -67,12 +67,12 @@
                         </div>
                     </div>
                     <div class="col-4">
-                        <label style="display: none">Selected File</label><br>
-                        <img :src="form.photo" style="height: 50px; width: 50px;">
+                        <label style="display: none">Old photo</label><br>
+                        <img :src="newphoto" style="height: 50px; width: 50px;">
+                        <label style="display: none">Old photo</label>
+                        <img :src="`/`+form.photo" style="height: 50px; width: 50px;">
                     </div>
                 </div>
-
-
             </div>
             <!-- /.card-body -->
 
@@ -96,24 +96,35 @@
                     name: '',
                     email: '',
                     photo: '',
+                    new_photo: '',
                     nid_number: '',
-                    joining_date: '',
-                    salary: '',
+                    shop_name: '',
+                    phone: '',
                     address: ''
                 },
-                errors:{}
+                errors:{},
+                newphoto:''
             }
         },
+        mounted(){
+            let id = this.$route.params.id;
+            axios.get('/api/supplier/'+id)
+                .then((res)=>{
+                    this.form = res.data.row
+                })
+                .catch((e)=>{
+                  console.log(e);
+                })
+        },
         methods:{
-            employeeInsert(){
-                axios.post('/api/employee/',this.form)
+            supplierUpdate(){
+                let id = this.$route.params.id;
+                axios.patch('/api/supplier/'+id,this.form)
                     .then(() => {
-                        this.$router.push({name: 'employee'});
+                        this.$router.push({name: 'supplier'});
                         Notification.success();
                     })
-                    .catch((error) =>{
-                        this.errors = error.response.data.errors
-                    })
+                    .catch(error => this.errors = error.response.data.errors)
             },
             onFileSelected(event){
                 let file = event.target.files[0];
@@ -123,7 +134,8 @@
                 else {
                     let reader = new FileReader();
                     reader.onload = (event) =>{
-                        this.form.photo = event.target.result;
+                        this.newphoto = event.target.result;
+                        this.form.new_photo = this.newphoto;
                     };
                     reader.readAsDataURL(file);
                 }

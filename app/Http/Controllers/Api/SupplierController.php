@@ -3,28 +3,27 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Model\Employee;
+use App\Model\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
-class EmployeeController extends Controller
+class SupplierController extends Controller
 {
+
     public function index()
     {
-        $employees = Employee::all();
-        return response()->json(['employees' => $employees]);
+        $suppliers = Supplier::all();
+        return response()->json(['suppliers' => $suppliers]);
     }
+
 
     public function store(Request $request)
     {
         $request->validate([
             'name'        => 'required',
-            'email'       => 'required',
-            'joining_date'=> 'required',
-            'address'     => 'required',
-            'salary'      => 'required',
-            'nid_number'  => 'required'
+            'phone'       => 'required',
+            'address'     => 'required'
         ]);
         $photo = $request->photo;
         if($photo){
@@ -32,7 +31,7 @@ class EmployeeController extends Controller
             $sub = substr($photo, 0, $position);
             $ext = explode('/',$sub)[1];
             $imageName = time().".".$ext;
-            $upload_path = 'upload/employee';
+            $upload_path = 'upload/supplier';
             if (!File::exists($upload_path)) {
                 File::makeDirectory($upload_path, $mode = 0777, true, true);
             }
@@ -48,38 +47,35 @@ class EmployeeController extends Controller
             'email'         => $request->email,
             'address'       => $request->address,
             'nid_number'    => $request->nid_number,
-            'joining_date'  => $request->joining_date,
-            'salary'        => $request->salary,
+            'phone'         => $request->phone,
+            'shop_name'     => $request->shop_name,
             'photo'         => $image_url
         ];
-        Employee::create($data);
+        Supplier::create($data);
     }
-
 
     public function show($id)
     {
-        $row = Employee::findOrFail($id);
+        $row = Supplier::findOrFail($id);
         return response()->json(['row' => $row]);
     }
+
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'name'        => 'required',
-            'email'       => 'required',
-            'joining_date'=> 'required',
-            'address'     => 'required',
-            'salary'      => 'required',
-            'nid_number'  => 'required'
+            'phone'       => 'required',
+            'address'     => 'required'
         ]);
-        $row = Employee::findOrFail($id);
+        $row = Supplier::findOrFail($id);
         $photo = $request->new_photo;
         if($photo){
             $position = strpos($photo,';');
             $sub = substr($photo, 0, $position);
             $ext = explode('/',$sub)[1];
             $imageName = time().".".$ext;
-            $upload_path = 'upload/employee';
+            $upload_path = 'upload/supplier';
             if (!File::exists($upload_path)) {
                 File::makeDirectory($upload_path, $mode = 0777, true, true);
             }
@@ -98,17 +94,16 @@ class EmployeeController extends Controller
             'email'         => $request->email,
             'address'       => $request->address,
             'nid_number'    => $request->nid_number,
-            'joining_date'  => $request->joining_date,
-            'salary'        => $request->salary,
+            'phone'         => $request->phone,
+            'shop_name'     => $request->shop_name,
             'photo'         => $image_url
         ];
-        Employee::where('id',$id)->update($data);
+        Supplier::where('id',$id)->update($data);
     }
-
 
     public function destroy($id)
     {
-        $row = Employee::findOrFail($id);
+        $row = Supplier::findOrFail($id);
         if(file_exists($row->photo)){
             unlink($row->photo);
         }
