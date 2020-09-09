@@ -19,6 +19,11 @@ let showSupplier = require('./components/supplier/show').default;
 let addCategory = require('./components/category/create').default;
 let Category = require('./components/category/index').default;
 let editCategory = require('./components/category/edit').default;
+//product
+let addProduct = require('./components/product/create').default;
+let Product = require('./components/product/index').default;
+let editProduct = require('./components/product/edit').default;
+let showProduct = require('./components/product/show').default;
 
 export const routes = [
     //authentication
@@ -42,6 +47,11 @@ export const routes = [
     //category routes
     { path: '/store-category', component: addCategory, name: 'store-category' },
     { path: '/category', component:Category, name: 'category' },
-    { path: '/edit-category/:id', component:editCategory, name: 'edit-category' }
+    { path: '/edit-category/:id', component:editCategory, name: 'edit-category' },
+    //product routes
+    { path: '/store-product', component: addProduct, name: 'store-product' },
+    { path: '/product', component:Product, name: 'product' },
+    { path: '/edit-product/:id', component:editProduct, name: 'edit-product' },
+    { path: '/show-product/:id', component:showProduct, name: 'show-product' }
 
 ]
