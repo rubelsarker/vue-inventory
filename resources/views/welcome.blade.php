@@ -92,6 +92,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         </ul>
                     </li>
                     <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link"><p>Customer</p></a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <router-link to="/store-customer" class="nav-link"><p>Add Customer</p></router-link>
+                                <router-link to="/customer" class="nav-link"><p>All Customer</p></router-link>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item has-treeview">
                         <a href="#" class="nav-link"><p>Category</p></a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">

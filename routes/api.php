@@ -21,5 +21,6 @@ Route::group(['namespace' => 'Api'], function(){
     Route::apiResource('/supplier','SupplierController');
     Route::apiResource('/category','CategoryController');
     Route::apiResource('/product','ProductController');
+    Route::apiResource('/customer','CustomerController');
 });
 

@@ -24,6 +24,11 @@ let addProduct = require('./components/product/create').default;
 let Product = require('./components/product/index').default;
 let editProduct = require('./components/product/edit').default;
 let showProduct = require('./components/product/show').default;
+//customer
+let addCustomer = require('./components/customer/create').default;
+let Customer = require('./components/customer/index').default;
+let editCustomer = require('./components/customer/edit').default;
+let showCustomer = require('./components/customer/show').default;
 
 export const routes = [
     //authentication
@@ -52,6 +57,11 @@ export const routes = [
     { path: '/store-product', component: addProduct, name: 'store-product' },
     { path: '/product', component:Product, name: 'product' },
     { path: '/edit-product/:id', component:editProduct, name: 'edit-product' },
-    { path: '/show-product/:id', component:showProduct, name: 'show-product' }
+    { path: '/show-product/:id', component:showProduct, name: 'show-product' },
+    //customer routes
+    { path: '/store-customer', component: addCustomer, name: 'store-customer' },
+    { path: '/customer', component:Customer, name: 'customer' },
+    { path: '/edit-customer/:id', component:editCustomer, name: 'edit-customer' },
+    { path: '/show-customer/:id', component:showCustomer, name: 'show-customer' }
 
 ]
